@@ -13,6 +13,7 @@ platform :ios do
       type: "appstore",
       app_identifier: "com.7HWULNV59K.PrivateJetManager",
       api_key: api_key,
+      git_url: ENV["MATCH_GIT_URL"],
       readonly: true
     )
 
