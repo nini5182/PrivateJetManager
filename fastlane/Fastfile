@@ -13,7 +13,7 @@ platform :ios do
       type: "appstore",
       app_identifier: "com.7HWULNV59K.PrivateJetManager",
       api_key: api_key,
-      git_url: "https://github.com/nini5182/Match-Secrets.git",
+      git_url: "https://#{ENV["MATCH_GIT_TOKEN"]}@github.com/nini5182/Match-Secrets.git",
       readonly: true
     )
 
