@@ -1,0 +1,19 @@
+name: Build and Upload to TestFlight
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Fastlane
+        run: gem install fastlane
+
+      - name: Run Fastlane
+        run: fastlane ios beta
