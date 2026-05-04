@@ -4,7 +4,7 @@ platform :ios do
   desc "Build and upload to TestFlight"
   lane :beta do
     build_app(
-      scheme: "TonScheme"
+      scheme: "PrivateJetManager"
     )
 
     upload_to_testflight(
