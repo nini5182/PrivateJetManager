@@ -17,6 +17,15 @@ platform :ios do
       readonly: true
     )
 
+    update_code_signing_settings(
+  use_automatic_signing: false,
+  path: "PrivateJetManager.xcodeproj",
+  team_id: "7HWULNV59K",
+  bundle_identifier: "com.7HWULNV59K.PrivateJetManager",
+  profile_name: "match AppStore com.7HWULNV59K.PrivateJetManager",
+  code_sign_identity: "iPhone Distribution"
+)
+
     build_app(
   scheme: "PrivateJetManager",
   export_method: "app-store",
