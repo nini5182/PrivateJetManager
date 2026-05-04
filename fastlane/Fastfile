@@ -4,8 +4,10 @@ platform :ios do
   desc "Build and upload to TestFlight"
   lane :beta do
     build_app(
-      scheme: "PrivateJetManager"
-    )
+  scheme: "PrivateJetManager",
+  export_method: "app-store",
+  xcargs: "-allowProvisioningUpdates"
+)
 
     upload_to_testflight(
       skip_waiting_for_build_processing: true
