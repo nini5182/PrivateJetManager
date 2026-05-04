@@ -18,9 +18,15 @@ platform :ios do
     )
 
     build_app(
-      scheme: "PrivateJetManager",
-      export_method: "app-store"
-    )
+  scheme: "PrivateJetManager",
+  export_method: "app-store",
+  export_options: {
+    signingStyle: "manual",
+    provisioningProfiles: {
+      "com.7HWULNV59K.PrivateJetManager" => "match AppStore com.7HWULNV59K.PrivateJetManager"
+    }
+  }
+)
 
     upload_to_testflight(
       api_key: api_key,
