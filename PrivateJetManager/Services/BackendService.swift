@@ -14,7 +14,7 @@ final class BackendService {
     private var baseURL: String {
         APIConfig.backendURL
     }
-    
+
     func fetchLogbook() async throws -> [SheetFlight] {
         guard let url = URL(string: "\(APIConfig.backendURL)/api/sheets/get-logbook") else {
             throw URLError(.badURL)
@@ -38,7 +38,6 @@ final class BackendService {
         let flights: [SheetFlight]
     }
 
-    
     func syncLogbook(flights: [Flight]) async throws {
         guard APIConfig.isConfigured else {
             throw URLError(.badURL)
@@ -50,7 +49,7 @@ final class BackendService {
 
         let syncFlights = flights.map { flight in
 
-            // 🔹 Calcul automatique de la durée en heures
+            // Calcul automatique de la durée en heures
             let durationHours: Double = {
                 if let ft = flight.flightTime, ft > 0 {
                     return ft
@@ -74,10 +73,11 @@ final class BackendService {
                 remarkTag: flight.remarkTag.rawValue,
                 isRemarkDismissed: flight.isRemarkDismissed,
                 fuel: flight.fuel,
-                isCompleted: flight.isCompleted
+                isCompleted: flight.isCompleted,
+                hobsDepart: flight.hobsDepart,    // ← transmis au backend
+                hobsArrivee: flight.hobsArrivee   // ← transmis au backend
             )
         }
-
 
         let body = SyncLogbookRequest(flights: syncFlights)
 
@@ -96,8 +96,6 @@ final class BackendService {
             throw URLError(.badServerResponse)
         }
     }
-
-
 }
 
 struct SyncLogbookRequest: Codable {
@@ -105,9 +103,9 @@ struct SyncLogbookRequest: Codable {
 }
 
 struct SyncFlight: Codable {
-    let id : String
+    let id: String
     let date: Date
-    let arrivalDate : Date	
+    let arrivalDate: Date
     let departure: String
     let arrival: String
     let aircraft: String
@@ -119,4 +117,6 @@ struct SyncFlight: Codable {
     let isRemarkDismissed: Bool
     let fuel: Int
     let isCompleted: Bool
+    let hobsDepart: Double?    // ← nouveau
+    let hobsArrivee: Double?   // ← nouveau
 }

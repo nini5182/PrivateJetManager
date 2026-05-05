@@ -1,9 +1,9 @@
-//Flight.swift
+// Flight.swift
 
 import Foundation
 
 struct Flight: Identifiable, Codable {
-    var id : UUID = UUID()
+    var id: UUID = UUID()
 
     var departureDate: Date
     var arrivalDate: Date
@@ -23,6 +23,10 @@ struct Flight: Identifiable, Codable {
     var isCompleted: Bool
     var googleEventId: String?
     var lastSyncDate: Date?
-    
+
     var flightTime: Double?
+
+    // MARK: - Horamètre
+    var hobsDepart: Double?
+    var hobsArrivee: Double?
 }

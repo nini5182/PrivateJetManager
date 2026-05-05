@@ -10,7 +10,7 @@ import SwiftUI
 
 enum FuelConfig {
     static let initialFuel: Double = 140
-    static let consumptionPerHour: Double = 23
+    static let consumptionPerHour: Double = 22
     static let maxFuel: Double = 140 // optionnel
 }
 
