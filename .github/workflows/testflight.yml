@@ -7,11 +7,14 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macos-15
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+
+      - name: List Xcode versions
+        run: ls /Applications/ | grep Xcode
 
       - name: Install Fastlane
         run: gem install fastlane
@@ -22,6 +25,9 @@ jobs:
           security default-keychain -s build.keychain
           security unlock-keychain -p "${{ secrets.MATCH_KEYCHAIN_PASSWORD }}" build.keychain
           security set-keychain-settings -t 3600 -u build.keychain
+
+      - name: Select Xcode 26
+        run: sudo xcode-select -s /Applications/Xcode_26.0.app
 
       - name: Run Fastlane beta
         env:
